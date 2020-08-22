@@ -1,0 +1,381 @@
+
+body{
+    color: #444;
+}
+
+main {
+    margin: auto;
+    margin-bottom: 100px;
+    max-width: 800px;
+
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+main p a {
+    margin-top: 1em;
+    padding: 1em;
+    display: block;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: white;
+    color:#444;
+    border-bottom: 4px solid #eee;
+    box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+
+main p a:hover {
+    color:#8B3CFF;
+
+    border-color: #8B3CFF;
+    box-shadow:0 10px 16px 0 rgba(139,60,255,0.4),0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+
+footer p a {
+    text-decoration: none;
+    font-weight: bold;
+    color:#8B3CFF;
+}
+
+div, p, td {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+footer {
+    padding: .5em;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    border-top: 4px solid #8B3CFF;
+}
+
+footer p {
+    font-size: small;
+    margin-bottom: .5em;
+}
+
+h2.welcome-title {
+    margin-bottom: .5rem;
+}
+
+
+
+.assessment-checkbox {
+    margin-top: .5em;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.assessment-checkbox-label{
+    font-weight: bold;
+    display: block;
+}
+
+.assessment-complete {
+    text-align: center;
+    margin-top: 3em;
+}
+
+.assessment-input{
+    padding: .5em;
+    padding-left:1em;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+.assessment-list{
+    max-width: 400px;
+    padding-left: 4.5em;
+    margin: auto;
+}
+.assessment-list ul {
+    list-style-type: circle;
+    text-align: left;
+    margin: auto;
+    margin-bottom: 2em;
+    
+}
+
+.breadCrumb {
+    width: 100%;
+    padding: .25em;
+    border-bottom: 4px solid #8B3CFF;
+    margin-bottom: .5em;
+}
+
+.btn {
+border: 2px solid black;
+font-weight: bold;
+border-radius: 20px;
+margin-left:.5em;
+margin-right: .5em;
+padding: .5em;
+padding-left: 1em;
+padding-right: 1em;
+}
+
+.btn.btn-sm{
+    font-weight: normal;
+    padding-top:.25em;
+    padding-bottom: .25em;
+    border-width: 1px;
+}
+
+
+.btn-primary {
+    border-color: #8B3CFF;
+    text-decoration: none;
+    background-color: #FFF;
+    color: #8B3CFF;
+}
+
+.btn-primary:hover {
+
+    background-color: #8B3CFF;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-primary.btn-selected{
+    background-color: #8B3CFF;
+    color: white;
+    cursor: pointer;
+}
+
+.custom-link {
+    text-decoration: none;
+    color: #8B3CFF;
+}
+
+.icon-link-grid {
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.icon-link-grid .icon-link {
+    padding: .5em;
+    display: flex; 
+    flex-basis: calc(50% - 10px);  
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    border-bottom: 4px solid #8B3CFF;
+    border-radius: 15px;
+    margin: 5px;
+    min-width: calc(50%-40px);
+    color: #8B3CFF;
+    text-align: center;
+    text-decoration: none;
+    box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.icon-link:hover{
+    box-shadow:0 10px 16px 0 rgba(139,60,255,0.4),0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+
+.icon-link-grid .icon-link > h2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 1em;
+}
+
+.icon-link-icon{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70px;
+    height: 70px;
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+.info-section-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.info-section{
+    width: 100%;
+    margin-bottom: 1em;
+    padding: .5em;
+    background-color: white;
+    box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    border-bottom: 4px solid #8B3CFF;
+
+}
+
+.info-section h3{
+    border-bottom: 2px solid #8B3CFF;
+    margin-bottom: .5em;
+}
+
+.info-section h4 {
+    margin-bottom: 1em;
+}
+
+.info-section ul {
+    margin-left: 2em;
+    margin-top: .5em;
+    list-style-type: circle;
+}
+.info-section ul li {
+    margin-bottom: 0;
+}
+
+img.info-icon {
+    padding-right: .25em;
+}
+
+.outputDocument{
+    width: 595px;
+    position: absolute;
+    opacity: 1;
+    text-align: center;
+    
+}
+
+.outputDocument h1 {
+    font-size: 12pt;
+    text-decoration: underline;
+}
+
+.outputDocument h2 {
+    text-align: left;
+    font-size: 10pt;
+    text-decoration: underline;
+    margin-bottom: .5em;
+    margin-left: ;
+}
+.outputDocument p, .outputDocument table {
+    font-size: 10pt;
+}
+
+.outputDocument p.important {
+    text-decoration: underline;
+    font-size: 10.5pt;
+    font-weight: bold;
+}
+
+.outputDocument table.userComplete tbody tr td {
+    border: none;
+    padding-bottom:2em;
+}
+
+
+
+.outputDocument table tbody tr td {
+    border: 1px solid black;
+    padding: 0;
+    padding-left:.5em;
+    padding-right:.5em;
+}
+
+.outputDocument table tbody tr td.question{
+    width: 300px;
+}
+
+.outputDocument table tbody tr td.question ul{
+    margin-bottom: 0;
+}
+
+.outputDocument table tbody tr td.question ul li{
+    margin-bottom: 0;
+}
+
+.outputDocument table tbody tr td.question-2{
+    width: 220px;
+}
+.outputDocument table tbody tr td span.answer{
+padding-left: 1.5em;
+}
+
+.outputDocument table tbody tr td.answer-2 span.answer{
+    padding-left: 5em;
+}
+
+.outputDocument table tbody tr td.answer-3 span.answer{
+    padding-left: 4em;
+}
+
+.outputDocument table tbody tr td span.important{
+    font-weight: bold;
+}
+
+.page-title {
+    max-width: 960;
+
+    color: #999;
+
+    margin: 0 auto;
+
+    margin-bottom: .5em;  
+
+}
+
+div.progress-bar {
+    display: flex;
+    justify-content: center;
+}
+
+div.progress-bar.complete {
+flex-wrap: wrap;
+}
+
+div.progress-bar.complete .complete {
+    display: none;
+}
+
+div.progress-bar.complete .identified {
+    border-color: transparent;
+    color: #8B3CFF;
+}
+
+div.progress-bar.complete div {
+    width: auto;
+    margin-bottom: .5em;
+}
+
+div.progress-bar div {
+    margin-left: .25em;
+    margin-right: .25em;
+    margin-bottom: 1em;
+    min-width: 34px;
+    text-align: center;
+    padding: .25em;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #cccccc;
+    color: #cccccc;
+    
+}
+
+div.progress-bar .notstarted {
+border-color: #cccccc;
+}
+
+div.progress-bar .inprogress {
+    border-color: #8B3CFF;
+    background-color: #8B3CFF;
+    color: white;
+}
+
+div.progress-bar .complete {
+    border-color: #8B3CFF;
+    color: #8B3CFF;
+}
+
+div.progress-bar .identified {
+    border-color: #ff3842;
+    color: #ff3842;
+    font-weight: bold;
+}
