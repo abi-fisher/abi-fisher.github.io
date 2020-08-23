@@ -30,8 +30,8 @@ export class DeliriumKnowledge extends React.Component {
       medicationModel:{ isComplete: false },
       environmentModel:{ isComplete: false }
 
+  /* DEBUG OUTPUT
 
-    /* DEBUG OUTPUT
       painModel: { isComplete: true },
       infectionModel: { isComplete: true },
       nutritionModel:{ isComplete: true },
@@ -40,7 +40,7 @@ export class DeliriumKnowledge extends React.Component {
       medicationModel:{ isComplete: true },
       environmentModel:{ isComplete: true }
 
-      */
+     */   
     }
 
   }

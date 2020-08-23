@@ -40,7 +40,17 @@ const download = () =>{
         doc.addImage(imgData, 'PNG', 60, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
-      doc.save( 'file.pdf');
+      
+      
+      //doc.save( 'file.pdf');
+      let today = new Date();
+      let fileName = `Delirium Assessment tool - ${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`
+
+      if (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase())) {
+          window.open(doc.output('bloburl', { filename: fileName }))
+      } else {
+          doc.save(fileName)
+      }
 
   });
 
