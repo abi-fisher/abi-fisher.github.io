@@ -1,10 +1,13 @@
 import React from "react"
 import { Link } from "gatsby"
-import * as jsPDF from "jspdf"
-import * as html2canvas from "html2canvas"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 
+
+if (typeof window !== `undefined`) {
+  import * as jsPDF from "jspdf"
+  import * as html2canvas from "html2canvas"
+}
 
 const download = () =>{
 
