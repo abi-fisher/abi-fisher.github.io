@@ -1,23 +1,16 @@
 import React from "react"
-import { Link } from "gatsby"
-import Layout from "../../components/layout"
-import SEO from "../../components/seo"
-
-
-if (typeof window !== `undefined`) {
-  import * as jsPDF from "jspdf"
-  import * as html2canvas from "html2canvas"
-}
+import * as jsPDF from "jspdf"
+import * as html2canvas from "html2canvas"
 
 const download = () =>{
 
-    html2canvas(document.getElementById('content'), { windowWidth: 595,
+    html2canvas(document.getElementById('content'), { windowWidth: 630,//595,
       onclone: (d)=>{
       d.getElementById('content').style.opacity = 1;
     }
     }).then(function (canvas) {
 
-      if(0===1){
+   /*   if(0===1){
         var img = canvas.toDataURL("image/png");
         var doc = new jsPDF({
           orientation: 'p',
@@ -28,23 +21,23 @@ const download = () =>{
         doc.addImage(img, 'JPEG',10,10);
         doc.save('test.pdf');  
       }
-
+*/
       
       var imgData = canvas.toDataURL('image/png');
-      var imgWidth = 420; 
-      var pageHeight = 600;  
+      var imgWidth = 320; 
+      var pageHeight = 590;  
       var imgHeight = canvas.height * imgWidth / canvas.width;
       var heightLeft = imgHeight;
       var doc = new jsPDF('p', 'px');
       var position = 10;
       
-      doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+      doc.addImage(imgData, 'PNG', 60, position, imgWidth, imgHeight);
       heightLeft -= pageHeight;
       
       while (heightLeft >= 0) {
         position = heightLeft - imgHeight;
         doc.addPage();
-        doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+        doc.addImage(imgData, 'PNG', 60, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
       doc.save( 'file.pdf');
@@ -53,19 +46,22 @@ const download = () =>{
 
 }
 
-const DeliriumKnowledge = () => (
-  <Layout>
-    <SEO title="Delirium Knowledge" />
-    <h1>Assessment Tool</h1>
-    <p>this page will give final summary of the assessment results and allow the user to download a pdf version
-      of the document.
+function Output(props) {  
+
+  
+  return(
+    <>
+    <p style={{textAlign: 'center'}}>
+      <button 
+        className="btn btn-primary"
+        onClick={()=>{
+          console.log("this is props", props);
+          download()
+        }
+        } >
+          Download PDF
+      </button>
     </p>
-<p>
-<Link to="/">Go Home</Link>
-</p>
-
-
-    <p><button onClick={()=>download()}>TEST ME</button></p>
 
     <div id="content" className="outputDocument">
       <h1>Daily delirium assessment tool</h1>
@@ -202,6 +198,9 @@ const DeliriumKnowledge = () => (
   </tbody>
 </table>
 
+<br/>
+<br/>
+
 <h2>Hydration</h2>
 <table>
   <tbody>                    
@@ -275,12 +274,12 @@ const DeliriumKnowledge = () => (
     </tr>
     <tr>
       <td className="question">Is there a history of?
-      <ul>
-        <li>Long term confusion with no diagnosis/poor 4AT score</li>
-        <li>Previous excessive alcohol use</li>
-        <li>Previous drug use</li>
-      </ul>
-</td> 
+        <ul>
+          <li>Long term confusion with no diagnosis/poor 4AT score</li>
+          <li>Previous excessive alcohol use</li>
+          <li>Previous drug use</li>
+        </ul>
+      </td> 
       <td className="answer-2">
         <span className="answer important">Yes</span>
         <span className="answer">No</span>
@@ -289,20 +288,63 @@ const DeliriumKnowledge = () => (
   </tbody>
 </table>
 
-<h1>a</h1>
-<h1>a</h1>
-<h1>a</h1>
-<h1>a</h1>
+<div style={{textAlign: 'left'}}>
+  <h2 style={{display: 'inline-block'}}>Identified Issues</h2><p style={{display: 'inline'}}> - tick each box that is an identified issue for the patient</p>
+</div>
+<table>
 
+  <tbody>   
+    <tr>
+        <td /> 
+        <td className="question"><strong>Potential cause of confusion?</strong></td> 
+    </tr>                 
+    <tr>
+      <td className="question"><strong>P</strong>ain</td> 
+      <td className="answer">
+        <span className="answer important">✓</span>
+      </td>
+    </tr>
+    <tr>
+      <td className="question"><strong>I</strong>nfection</td> 
+      <td className="answer">
+        <span className="answer important">✓</span>
+      </td>
+    </tr>
+    <tr>
+      <td className="question"><strong>N</strong>utrition</td> 
+      <td className="answer">
+        <span className="answer important">✓</span>
+      </td>
+    </tr>
+    <tr>
+      <td className="question"><strong>C</strong>onstipation</td> 
+      <td className="answer">
+        <span className="answer important">✓</span>
+      </td>
+    </tr>
+    <tr>
+      <td className="question"><strong>H</strong>ydration</td> 
+      <td className="answer">
+        <span className="answer important">✓</span>
+      </td>
+    </tr>
+    <tr>
+      <td className="question"><strong>M</strong>edication</td> 
+      <td className="answer">
+        <span className="answer important">✓</span>
+      </td>
+    </tr>
+    <tr>
+      <td className="question"><strong>E</strong>nvironment</td> 
+      <td className="answer">
+        <span className="answer important">✓</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
+</>
+)}
 
-<div id="elementH"></div>
-    
-
-
-    
-  </Layout>
-)
-
-export default DeliriumKnowledge
+export default Output

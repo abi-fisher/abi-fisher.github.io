@@ -11,6 +11,7 @@ import Constipation from "./Constipation"
 import Hydration from "./Hydration"
 import Medication from "./Medication"
 import Environment from "./Environmental"
+import Output from "./Output"
 
 export class DeliriumKnowledge extends React.Component {
 
@@ -28,6 +29,18 @@ export class DeliriumKnowledge extends React.Component {
       hydrationModel:{ isComplete: false },
       medicationModel:{ isComplete: false },
       environmentModel:{ isComplete: false }
+
+
+    /* DEBUG OUTPUT
+      painModel: { isComplete: true },
+      infectionModel: { isComplete: true },
+      nutritionModel:{ isComplete: true },
+      constipationModel: { isComplete: true },
+      hydrationModel:{ isComplete: true },
+      medicationModel:{ isComplete: true },
+      environmentModel:{ isComplete: true }
+
+      */
     }
 
   }
@@ -176,13 +189,7 @@ render(){
                 :      
                 <div>
                   <AssessmentProgressBar complete {...this.state}/>
-                  <div style={{textAlign: 'center', marginTop: '2em'}}>
-                    <button 
-                      className="btn btn-primary"
-                      onClick={()=>console.log("download")} >
-                        Download PDF
-                    </button>
-                  </div>
+                  <Output {...this.state}/>
                 </div> )      
 }
 

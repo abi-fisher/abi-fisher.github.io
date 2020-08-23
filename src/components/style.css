@@ -239,9 +239,11 @@ img.info-icon {
 .outputDocument{
     width: 595px;
     position: absolute;
-    opacity: 1;
+    opacity: 0;
     text-align: center;
-    
+    left:0;
+    top:0;   
+    pointer-events: none;
 }
 
 .outputDocument h1 {
@@ -254,7 +256,6 @@ img.info-icon {
     font-size: 10pt;
     text-decoration: underline;
     margin-bottom: .5em;
-    margin-left: ;
 }
 .outputDocument p, .outputDocument table {
     font-size: 10pt;
@@ -297,6 +298,10 @@ img.info-icon {
 }
 .outputDocument table tbody tr td span.answer{
 padding-left: 1.5em;
+}
+
+.outputDocument table tbody tr td.answer{
+   text-align: center;
 }
 
 .outputDocument table tbody tr td.answer-2 span.answer{
