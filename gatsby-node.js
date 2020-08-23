@@ -7,6 +7,10 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
               test: /html2canvas/,
               use: loaders.null(),
             },
+            {
+                test: /jspdf/,
+                use: loaders.null(),
+              },
           ],
         },
       })
