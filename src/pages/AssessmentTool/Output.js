@@ -9,20 +9,7 @@ const download = () =>{
       d.getElementById('content').style.opacity = 1;
     }
     }).then(function (canvas) {
-
-   /*   if(0===1){
-        var img = canvas.toDataURL("image/png");
-        var doc = new jsPDF({
-          orientation: 'p',
-          unit: 'mm',
-          format: 'a4',
-          putOnlyUsedFonts:true
-        });
-        doc.addImage(img, 'JPEG',10,10);
-        doc.save('test.pdf');  
-      }
-*/
-      
+    
       var imgData = canvas.toDataURL('image/png');
       var imgWidth = 320; 
       var pageHeight = 590;  
@@ -41,8 +28,6 @@ const download = () =>{
         heightLeft -= pageHeight;
       }
       
-      
-      //doc.save( 'file.pdf');
       let today = new Date();
       let fileName = `Delirium Assessment tool - ${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`
 
@@ -58,6 +43,15 @@ const download = () =>{
 
 function Output(props) {  
 
+  const {
+    painModel, 
+    infectionModel, 
+    nutritionModel, 
+    constipationModel,
+    hydrationModel, 
+    medicationModel, 
+    environmentModel,
+  } = props;
   
   return(
     <>
@@ -103,31 +97,31 @@ function Output(props) {
   <tr>
       <td className="question">Average Abbey Pain Scale Score</td> 
       <td>
-        <span className="answer">None</span>
-        <span className="answer">Mild</span>
-        <span className="answer important">Moderate</span>
-        <span className="answer important">Severe</span>
+      <span className="answer">{(painModel && painModel.painScore === 0)?"[ None ]":"None"}</span>
+        <span className="answer">{(painModel && painModel.painScore === 1)?"[ Mild ]":"Mild"}</span>
+        <span className="answer important">{(painModel && painModel.painScore === 2)?"[ Moderate ]":"Moderate"}</span>
+        <span className="answer important">{(painModel && painModel.painScore === 3)?"[ Severe ]":"Severe"}</span>
       </td>
     </tr>	                         
     <tr>
       <td className="question">Is there a history of confusion/hallucinations with opiates?</td> 
       <td className="answer-2">
-        <span className="answer important">Yes</span>
-        <span className="answer">No</span>
+        <span className="answer important">{(painModel && painModel.painHistory === true)?"[ Yes ]":"Yes"}</span>
+        <span className="answer">{(painModel && painModel.painHistory === false)?"[ No ]":"No"}</span>
       </td>
     </tr>
     <tr>
       <td className="question">Are we using PRN analgesia when required?</td> 
       <td className="answer-2">
-        <span className="answer">Yes</span>
-        <span className="answer"> No</span>
+        <span className="answer">{(painModel && painModel.painAnalgesia === true)?"[ Yes ]":"Yes"}</span>
+        <span className="answer"> {(painModel && painModel.painAnalgesia === false)?"[ No ]":"No"}</span>
       </td>
     </tr>
     <tr>
       <td className="question">Is the patient’s pain uncontrolled or advice is required?</td> 
       <td className="answer-2">
-        <span className="answer important">Yes</span>
-        <span className="answer">No</span>
+        <span className="answer important">{(painModel && painModel.painAdvise === true)?"[ Yes ]":"Yes"}</span>
+        <span className="answer">{(painModel && painModel.painAdvise === false)?"[ No ]":"No"}</span>
       </td>
     </tr>
   </tbody>
@@ -143,26 +137,26 @@ function Output(props) {
     </tr>	                         
     <tr>
       <td className="question-2">Chest</td> 
-      <td><span className="important">Yes</span> - </td>
+      <td><span className="important">{(infectionModel && infectionModel.infectionChest === true)?"[ Yes ]":"Yes"}</span> - {infectionModel && infectionModel.infectionChestDate}</td>
       <td className="answer">
-        <span className="answer important">Already Treating</span>
-        <span className="answer">N/A</span>
+        <span className="answer important">{(infectionModel && infectionModel.infectionChest === "A/T")?"[ Already Treating ]":"Already Treating"}</span>
+        <span className="answer">{(infectionModel && infectionModel.infectionChest === "N/A")?"[ N/A ]":"N/A"}</span>
       </td>
     </tr>
     <tr>
       <td className="question-2">Urine</td> 
-      <td><span className="important">Yes</span> - </td>
+      <td><span className="important">{(infectionModel && infectionModel.infectionUrine === true)?"[ Yes ]":"Yes"}</span> - {infectionModel && infectionModel.infectionUrineDate}</td>
       <td className="answer">
-        <span className="answer important">Already Treating</span>
-        <span className="answer">N/A</span>
+        <span className="answer important">{(infectionModel && infectionModel.infectionUrine === "A/T")?"[ Already Treating ]":"Already Treating"}</span>
+        <span className="answer">{(infectionModel && infectionModel.infectionUrine === "N/A")?"[ N/A ]":"N/A"}</span>
       </td>
     </tr>
     <tr>
       <td className="question-2">Surgical wound(s)</td> 
-      <td><span className="important">Yes</span> - </td>
+      <td><span className="important">{(infectionModel && infectionModel.infectionSurgical === true)?"[ Yes ]":"Yes"}</span> - {infectionModel && infectionModel.infectionSurgicalDate}</td>
       <td className="answer">
-        <span className="answer important">Already Treating</span>
-        <span className="answer">N/A</span>
+        <span className="answer important">{(infectionModel && infectionModel.infectionSurgical === "A/T")?"[ Already Treating ]":"Already Treating"}</span>
+        <span className="answer">{(infectionModel && infectionModel.infectionSurgical === "N/A")?"[ N/A ]":"N/A"}</span>
       </td>
     </tr>
   </tbody>
@@ -174,15 +168,15 @@ function Output(props) {
     <tr>
       <td className="question">Poor nutritional intake? If so, start food charting </td> 
       <td className="answer-2">
-        <span className="answer important">Yes</span>
-        <span className="answer">No</span>
+        <span className="answer important">{(nutritionModel && nutritionModel.nutritionIntake === true)?"[ Yes ]":"Yes"}</span>
+        <span className="answer">{(nutritionModel && nutritionModel.nutritionIntake === false)?"[ No ]":"No"}</span>
       </td>
     </tr>
     <tr>
       <td className="question">Is the patient symptomatic of aspiration/slow swallow/pouching?</td> 
       <td className="answer-2">
-        <span className="answer important">Yes</span>
-        <span className="answer"> No</span>
+        <span className="answer important">{(nutritionModel && nutritionModel.nutritionSymptom === true)?"[ Yes ]":"Yes"}</span>
+        <span className="answer"> {(nutritionModel && nutritionModel.nutritionSymptom === false)?"[ No ]":"No"}</span>
       </td>
     </tr>
   </tbody>
@@ -194,15 +188,15 @@ function Output(props) {
     <tr>
       <td className="question">Has the patient had a bowel movement in 3 days?</td> 
       <td className="answer-2">
-        <span className="answer">Yes</span>
-        <span className="answer important">No - PR &#9745;</span>
+        <span className="answer">{(constipationModel && constipationModel.constipationBowel === true)?"[ Yes ]":"Yes"}</span>
+        <span className="answer important">{(constipationModel && constipationModel.constipationBowel === false)?"[ No ]":"No"} - PR {(constipationModel && constipationModel.constipationBowelPR === true)?"✓":""}</span>
       </td>
     </tr>
     <tr>
       <td className="question">Has the patient been prescribed and given sufficient laxatives?</td> 
       <td className="answer-2">
-        <span className="answer">Yes</span>
-        <span className="answer important"> No</span>
+        <span className="answer">{(constipationModel && constipationModel.constipationLaxatives === true)?"[ Yes ]":"Yes"}</span>
+        <span className="answer important">{(constipationModel && constipationModel.constipationLaxatives === false)?"[ No ]":"No"} </span>
       </td>
     </tr>
   </tbody>
@@ -217,20 +211,20 @@ function Output(props) {
     <tr>
       <td className="question">Does the patient look dehydrated/overloaded?</td> 
       <td className="answer-2">
-        <span className="answer important">Yes</span>
-        <span className="answer">No</span>
+        <span className="answer important">{(hydrationModel && hydrationModel.hydrationOverloaded === true)?"[ Yes ]":"Yes"}</span>
+        <span className="answer">{(hydrationModel && hydrationModel.hydrationOverloaded === false)?"[ No ]":"No"}</span>
       </td>
     </tr>
     <tr>
       <td className="question">Oral intake for shift</td> 
       <td className="answer">
-        <span className="answer">____________________ ml</span>
+        <span className="answer">{hydrationModel && hydrationModel.hydrationIntake} ml</span>
       </td>
     </tr>
     <tr>
       <td className="question">Urine output for shift</td> 
       <td className="answer">
-        <span className="answer">____________________ ml</span>
+        <span className="answer">{hydrationModel && hydrationModel.hydrationOutput} ml</span>
       </td>
     </tr>
   </tbody>
@@ -242,31 +236,31 @@ function Output(props) {
     <tr>
       <td className="question">Has there been a change/omission in regular dementia medications?</td> 
       <td className="answer-3">
-        <span className="answer important">Yes</span>
-        <span className="answer">No</span>
-        <span className="answer">N/A</span>
+        <span className="answer important">{(medicationModel && medicationModel.medicationDementia === true)?"[ Yes ]":"Yes"}</span>
+        <span className="answer">{(medicationModel && medicationModel.medicationDementia === false)?"[ No ]":"No"}</span>
+        <span className="answer">{(medicationModel && medicationModel.medicationDementia === "N/A")?"[ N/A ]":"N/A"}</span>
       </td>
     </tr>
     <tr>
       <td className="question">Has there been a change/omission in regular Parkinson’s medication?</td> 
       <td className="answer-3">
-        <span className="answer important">Yes</span>
-        <span className="answer">No</span>
-        <span className="answer">N/A</span>
+        <span className="answer important">{(medicationModel && medicationModel.medicationParkinsons === true)?"[ Yes ]":"Yes"}</span>
+        <span className="answer">{(medicationModel && medicationModel.medicationParkinsons === false)?"[ No ]":"No"}</span>
+        <span className="answer">{(medicationModel && medicationModel.medicationParkinsons === "N/A")?"[ N/A ]":"N/A"}</span>
       </td>
     </tr>
     <tr>
       <td className="question">Has new analgesia been given recently? Specifically NSAIDs/opiates</td> 
       <td className="answer-2">
-        <span className="answer important">Yes</span>
-        <span className="answer">No</span>
+        <span className="answer important">{(medicationModel && medicationModel.medicationAnalgesia === true)?"[ Yes ]":"Yes"}</span>
+        <span className="answer">{(medicationModel && medicationModel.medicationAnalgesia === false)?"[ No ]":"No"}</span>
       </td>
     </tr>
     <tr>
       <td className="question">Have new anti-emetics/anti-epileptic/cardiac/mental health medications been given recently?</td> 
       <td className="answer-2">
-        <span className="answer important">Yes</span>
-        <span className="answer">No</span>
+        <span className="answer important">{(medicationModel && medicationModel.medicationMedications === true)?"[ Yes ]":"Yes"}</span>
+        <span className="answer">{(medicationModel && medicationModel.medicationMedications === false)?"[ No ]":"No"}</span>
       </td>
     </tr>
   </tbody>
@@ -278,8 +272,8 @@ function Output(props) {
     <tr>
       <td className="question">Has there been a change in bed space within the last 48 hours?</td> 
       <td className="answer-2">
-        <span className="answer important">Yes</span>
-        <span className="answer">No</span>
+        <span className="answer important">{(environmentModel && environmentModel.environmentBed === true)?"[ Yes ]":"Yes"}</span>
+        <span className="answer">{(environmentModel && environmentModel.environmentBed === false)?"[ No ]":"No"}</span>
       </td>
     </tr>
     <tr>
@@ -291,8 +285,8 @@ function Output(props) {
         </ul>
       </td> 
       <td className="answer-2">
-        <span className="answer important">Yes</span>
-        <span className="answer">No</span>
+        <span className="answer important">{(environmentModel && environmentModel.environmentHistory === true)?"[ Yes ]":"Yes"}</span>
+        <span className="answer">{(environmentModel && environmentModel.environmentHistory === false)?"[ No ]":"No"}</span>
       </td>
     </tr>
   </tbody>
@@ -302,7 +296,6 @@ function Output(props) {
   <h2 style={{display: 'inline-block'}}>Identified Issues</h2><p style={{display: 'inline'}}> - tick each box that is an identified issue for the patient</p>
 </div>
 <table>
-
   <tbody>   
     <tr>
         <td /> 
@@ -311,43 +304,43 @@ function Output(props) {
     <tr>
       <td className="question"><strong>P</strong>ain</td> 
       <td className="answer">
-        <span className="answer important">✓</span>
+      <span className="answer important">{(painModel && painModel.identified) ? '✓' : ''}</span>
       </td>
     </tr>
     <tr>
       <td className="question"><strong>I</strong>nfection</td> 
       <td className="answer">
-        <span className="answer important">✓</span>
+        <span className="answer important">{(infectionModel && infectionModel.identified) ? '✓' : ''}</span>
       </td>
     </tr>
     <tr>
       <td className="question"><strong>N</strong>utrition</td> 
       <td className="answer">
-        <span className="answer important">✓</span>
+        <span className="answer important">{(nutritionModel && nutritionModel.identified) ? '✓' : ''}</span>
       </td>
     </tr>
     <tr>
       <td className="question"><strong>C</strong>onstipation</td> 
       <td className="answer">
-        <span className="answer important">✓</span>
+        <span className="answer important">{(constipationModel && constipationModel.identified) ? '✓' : ''}</span>
       </td>
     </tr>
     <tr>
       <td className="question"><strong>H</strong>ydration</td> 
       <td className="answer">
-        <span className="answer important">✓</span>
+        <span className="answer important">{(hydrationModel && hydrationModel.identified) ? '✓' : ''}</span>
       </td>
     </tr>
     <tr>
       <td className="question"><strong>M</strong>edication</td> 
       <td className="answer">
-        <span className="answer important">✓</span>
+        <span className="answer important">{(medicationModel && medicationModel.identified) ? '✓' : ''}</span>
       </td>
     </tr>
     <tr>
       <td className="question"><strong>E</strong>nvironment</td> 
       <td className="answer">
-        <span className="answer important">✓</span>
+        <span className="answer important">{(environmentModel && environmentModel.identified) ? '✓' : ''}</span>
       </td>
     </tr>
   </tbody>
