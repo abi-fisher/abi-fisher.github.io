@@ -1,14 +1,13 @@
 import React from "react"
 import { Link } from "gatsby"
-//import * as jsPDF from "jspdf"
-//import * as html2canvas from "html2canvas"
+import * as jsPDF from "jspdf"
+import * as html2canvas from "html2canvas"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 
 
 const download = () =>{
 
-  /* 
     html2canvas(document.getElementById('content'), { windowWidth: 595,
       onclone: (d)=>{
       d.getElementById('content').style.opacity = 1;
@@ -47,9 +46,8 @@ const download = () =>{
       }
       doc.save( 'file.pdf');
 
-
   });
-*/
+
 }
 
 const DeliriumKnowledge = () => (
